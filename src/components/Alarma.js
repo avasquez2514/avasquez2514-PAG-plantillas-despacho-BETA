@@ -5,7 +5,6 @@ function Alarma() {
   const [nuevaHora, setNuevaHora] = useState("");
   const [nombreAlarma, setNombreAlarma] = useState("");
   const [alarmas, setAlarmas] = useState(() => {
-    // Cargar desde localStorage de forma segura al iniciar
     try {
       const guardadas = localStorage.getItem("alarmas");
       return guardadas ? JSON.parse(guardadas) : [];
@@ -16,7 +15,7 @@ function Alarma() {
   });
   const [activadas, setActivadas] = useState([]);
 
-  // Guardar en localStorage cada vez que cambien las alarmas
+  // Guardar en localStorage
   useEffect(() => {
     localStorage.setItem("alarmas", JSON.stringify(alarmas));
   }, [alarmas]);
@@ -25,11 +24,11 @@ function Alarma() {
   useEffect(() => {
     const intervalo = setInterval(() => {
       const ahora = new Date();
-      const horaActual = ahora.toTimeString().slice(0, 5); // "HH:MM"
+      const horaActual = ahora.toTimeString().slice(0, 5);
 
       alarmas.forEach((alarma, index) => {
         if (alarma.hora === horaActual && !activadas.includes(index)) {
-          alert(`⏰ ¡Alarma activada! ${alarma.nombre ? `(${alarma.nombre})` : ''} [${alarma.hora}]`);
+          mostrarPantallaAlarma(alarma);
           setActivadas((prev) => [...prev, index]);
         }
       });
@@ -37,6 +36,21 @@ function Alarma() {
 
     return () => clearInterval(intervalo);
   }, [alarmas, activadas]);
+
+  const mostrarPantallaAlarma = (alarma) => {
+    const mensaje = `⏰ ${alarma.nombre || "¡Alarma activada!"} - ${alarma.hora}`;
+
+    const overlay = document.createElement("div");
+    overlay.className = "alarma-overlay"; // Usa la clase CSS
+    overlay.textContent = mensaje;
+
+    // Al hacer clic, eliminar el overlay
+    overlay.onclick = () => {
+      document.body.removeChild(overlay);
+    };
+
+    document.body.appendChild(overlay);
+  };
 
   const agregarAlarma = () => {
     if (!nuevaHora) return;
