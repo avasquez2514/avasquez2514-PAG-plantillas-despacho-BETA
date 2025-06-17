@@ -1,0 +1,128 @@
+.notas-avances-container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 100px;
+  background: #f5f7fa;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.notas-avances-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.botones-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.boton {
+  background: #e2e8f0;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  color: #34495e;
+  box-shadow: 4px 4px 10px #d1d9e6, -4px -4px 10px #ffffff;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.boton:hover {
+  background: #dbeafe;
+  color: #1d4ed8;
+  transform: scale(1.04);
+}
+
+.boton.activo {
+  background: #3b82f6;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.6);
+  transform: scale(1.05);
+}
+
+/* Textarea fija con diseño moderno */
+.caja-texto-fija {
+  background: #f1f5f9;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: inset 3px 3px 8px #cbd5e1, inset -3px -3px 8px #ffffff;
+}
+
+.nota-textarea {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #ffffff;
+  color: #334155;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.nota-textarea:focus {
+  outline: none;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+}
+
+.seleccion-indicacion {
+  text-align: center;
+  color: #94a3b8;
+  font-style: italic;
+  margin-top: 50px;
+  font-size: 1.1rem;
+}
+
+/* Botones de acción */
+.botones-accion {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.boton-accion {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.boton-accion:hover {
+  transform: translateY(-2px);
+}
+
+.boton-accion.copiar {
+  background-color: #10b981;
+}
+
+.boton-accion.copiar:hover {
+  background-color: #059669;
+}
+
+.boton-accion.limpiar {
+  background-color: #ef4444;
+}
+
+.boton-accion.limpiar:hover {
+  background-color: #dc2626;
+}

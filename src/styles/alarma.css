@@ -1,0 +1,91 @@
+.alarma-container {
+  max-width: 535px;
+  margin: 2rem auto;
+  background-color: #f8f9fa;
+  padding: 8rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.alarma-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+.alarma-input-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.alarma-input {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.alarma-agregar {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.alarma-agregar:hover {
+  background-color: #1e40af;
+}
+
+.alarma-empty {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.alarma-lista {
+  list-style: none;
+  padding: 0;
+}
+
+.alarma-item {
+  background-color: #fff;
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alarma-hora {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.alarma-eliminar {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.alarma-eliminar:hover {
+  background-color: #b91c1c;
+}
+
+.alarma-input-container input[type="text"] {
+  margin-left: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}

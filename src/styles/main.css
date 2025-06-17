@@ -1,0 +1,171 @@
+/* Contenedor principal de la aplicación */
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Evita scroll horizontal */
+  padding: 3rem;
+  background-color: #f3f4f6;
+  min-height: 87vh;
+}
+
+/* Contenedor del contenido principal */
+.main-content {
+  text-align: center;
+  max-width: 1000px;
+  width: 100%;
+  overflow-x: hidden;
+
+}
+
+/* Estilo del título */
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1f2937; /* Gris oscuro */
+  margin-bottom: 1.5rem;
+}
+
+/* Botón de menú flotante */
+.menu-button {
+  position: fixed;
+  top: 10%;
+  left: 0;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  background: linear-gradient(to bottom, #3b82f6, #60a5fa);
+  color: white;
+  padding: 0.8rem;
+  border-radius: 0 12px 12px 0;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.menu-button:hover {
+  background: linear-gradient(to bottom, #2563eb, #3b82f6);
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* Contenedor para la información de notas */
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  min-height: 80vh; /* Asegura buen scroll */
+}
+
+/* TORRE FIJA */
+.torre-fija {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  background-color: #1a1f2b;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  z-index: 999;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================= */
+/* RESPONSIVE DESIGN MEJORADO 📱 */
+/* ============================= */
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .menu-button {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .main-container {
+    padding: 1rem;
+  }
+
+  .app-container {
+    flex-direction: column;
+    padding: 1rem 0.5rem;
+    align-items: stretch;
+  }
+
+  .main-content {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .main-container {
+    width: 100%;
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .main-content {
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  .main-container {
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  .menu-button {
+    font-size: 16px;
+    padding: 6px;
+    writing-mode: vertical-rl;
+    top: 8%;
+  }
+
+  .torre-fija {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    top: 5px;
+    right: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .title {
+    font-size: 1.3rem;
+    line-height: 1.5;
+  }
+
+  .menu-button {
+    font-size: 13px;
+    padding: 4px;
+  }
+
+  .main-container {
+    gap: 0.75rem;
+    padding: 0.2rem;
+  }
+
+  .torre-fija {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+}
+
+/* Inputs y botones adaptables */
+input,
+textarea,
+button {
+  max-width: 100%;
+  box-sizing: border-box;
+}

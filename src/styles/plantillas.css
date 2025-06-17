@@ -1,0 +1,170 @@
+/* CONTENEDOR GENERAL */
+.torre-selector-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin: 3rem auto;
+}
+
+/* TARJETA CENTRAL */
+.plantilla-card {
+    background: #ffffff;
+    padding: 4rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    max-width: 711px;
+    margin: auto;
+
+}
+
+/* TÍTULO */
+.plantilla-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* SELECTOR DE NOTAS */
+.plantilla-select {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.plantilla-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* ÁREA DE TEXTO */
+.plantilla-textarea {
+  width: 100%;
+  height: 194px;
+  padding: 1rem;
+  font-family: monospace;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  background-color: #f9fafb;
+  color: #111827;
+  resize: none;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+/* GRUPO DE BOTONES */
+.plantilla-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: center;
+}
+
+/* BOTÓN BASE */
+.plantilla-button {
+  flex: 1;
+  padding: 0.85rem 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* BOTÓN NOTA PÚBLICA */
+.plantilla-button.publica {
+  background: linear-gradient(to right, #51545b, #26292e); /* azul fuerte */
+}
+
+.plantilla-button.publica:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 18px rgba(59, 130, 246, 0.35);
+}
+
+/* BOTÓN NOTA INTERNA */
+.plantilla-button.interna {
+  background: linear-gradient(to right, #51545b, #26292e); /* azul más oscuro */
+}
+
+.plantilla-button.interna:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 18px rgba(30, 64, 175, 0.35);
+}
+
+/* BOTÓN COPIAR */
+.plantilla-button.copy {
+  background: linear-gradient(to right, #3980F5, #3980F5);
+}
+
+.plantilla-button.copy:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 18px rgba(16, 185, 129, 0.35);
+}
+
+/* BOTÓN LIMPIAR */
+.plantilla-button.clear {
+  background: linear-gradient(to right, #3980F5, #3980F5);
+}
+
+.plantilla-button.clear:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 18px rgba(239, 68, 68, 0.35);
+}
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  .plantilla-card {
+    padding: 1.5rem;
+  }
+
+  .plantilla-buttons {
+    flex-direction: column;
+  }
+}
+
+/* CONTENEDOR DE BOTONES EN COLUMNA */
+.torre-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columnas */
+  gap: 1rem;
+  width: 100%;
+}
+
+/* BOTONES INDIVIDUALES */
+.torre-button {
+  padding: 0.8rem;
+  background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+}
+
+.torre-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
