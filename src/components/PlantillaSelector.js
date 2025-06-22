@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import * as XLSX from "xlsx";
 import "../styles/plantillas.css";
 
 function PlantillaSelector({ torre, onSelect }) {
@@ -9,49 +8,50 @@ function PlantillaSelector({ torre, onSelect }) {
   const [textoNota, setTextoNota] = useState("");
   const [textoModificado, setTextoModificado] = useState(false);
 
-  useEffect(() => {
-    const cargarExcel = async () => {
-      try {
-        const response = await fetch("/NOTAS_DESPACHO.xlsx");
-        const blob = await response.blob();
-        const reader = new FileReader();
+  const API = "http://localhost:4000/api/notas";
 
-        reader.onload = (e) => {
-          const data = new Uint8Array(e.target.result);
-          const workbook = XLSX.read(data, { type: "array" });
-          const sheet = workbook.Sheets[workbook.SheetNames[0]];
-          const jsonData = XLSX.utils.sheet_to_json(sheet);
+  const cargarPlantillas = async () => {
+    const token = localStorage.getItem("token");
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
 
-          const plantillasObj = {};
+    if (!token || !usuario?.id) {
+      console.error("❌ No hay token o usuario en localStorage.");
+      return;
+    }
 
-          // Si quieres dejar una plantilla fija extra opcional (descomenta si la usas)
-          const notaPublica = sheet["E4"] ? sheet["E4"].v.toString().trim() : "";
-          const notaInterna = sheet["E3"] ? sheet["E3"].v.toString().trim() : "";
-          plantillasObj["CONFIRMACION VISITA"] = { notaPublica, notaInterna };
+    try {
+      const res = await fetch(`${API}/${usuario.id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-          jsonData.forEach((row) => {
-            const novedad = row["Novedad"]?.toString().trim() || "Sin título";
-            plantillasObj[novedad] = {
-              notaPublica: row["Nota_Publica"]?.toString().trim() || "",
-              notaInterna: row["Nota_Interna"]?.toString().trim() || "",
-            };
-          });
+      const data = await res.json();
+      console.log("🟢 Plantillas recibidas:", data);
 
-          setPlantillas(plantillasObj);
+      const agrupadas = {};
+      data.forEach((row) => {
+        const novedad = row.novedad || "Sin título";
+        agrupadas[novedad] = {
+          id: row.id,
+          notaPublica: row.nota_publica || "",
+          notaInterna: row.nota_interna || "",
         };
+      });
 
-        reader.readAsArrayBuffer(blob);
-      } catch (error) {
-        console.error("Error al leer el archivo Excel:", error);
-      }
-    };
+      setPlantillas(agrupadas);
+    } catch (error) {
+      console.error("Error cargando plantillas:", error);
+    }
+  };
 
-    cargarExcel();
+  useEffect(() => {
+    cargarPlantillas();
   }, []);
 
   useEffect(() => {
     if (notaSeleccionada && plantillas[notaSeleccionada] && !textoModificado) {
-      const encabezado = `Gestión-MOC-Torre ${torre}:\n`;
+      const encabezado = `Gestión-MOC-Torre ${torre}:`;
       const nota =
         tipoNota === "publica"
           ? plantillas[notaSeleccionada].notaPublica
@@ -88,59 +88,149 @@ function PlantillaSelector({ torre, onSelect }) {
     onSelect("");
   };
 
-  return (
-    <div className="plantilla-container">
-      <div className="plantilla-card">
-        <h2 className="plantilla-title">Selecciona Nota</h2>
+  const agregarPlantilla = async () => {
+    const novedad = prompt("Nombre de la nueva plantilla:");
+    if (!novedad) return;
 
-        <select
-          value={notaSeleccionada}
-          onChange={handleNotaChange}
-          className="plantilla-select"
-        >
-          <option value="">-- Selecciona una nota --</option>
-          {Object.keys(plantillas).map((key) => (
-            <option key={key} value={key}>
-              {key}
-            </option>
-          ))}
-        </select>
+    const notaPublica = prompt("Texto nota pública:") || "";
+    const notaInterna = prompt("Texto nota interna:") || "";
 
-        {notaSeleccionada && (
-          <>
-            <textarea
-              className="plantilla-textarea"
-              rows="5"
-              value={textoNota}
-              onChange={handleTextoChange}
-            />
-            <div className="plantilla-buttons">
-              <button
-                onClick={() => handleTipoNotaChange("publica")}
-                className={`plantilla-button publica ${tipoNota === "publica" ? "active" : ""}`}
-              >
-                Nota Pública
-              </button>
-              <button
-                onClick={() => handleTipoNotaChange("interna")}
-                className={`plantilla-button interna ${tipoNota === "interna" ? "active" : ""}`}
-              >
-                Nota Interna
-              </button>
-            </div>
-            <div className="plantilla-buttons">
-              <button onClick={copiarTexto} className="plantilla-button copy">
-                Copiar
-              </button>
-              <button onClick={limpiarTexto} className="plantilla-button clear">
-                Limpiar
-              </button>
-            </div>
-          </>
-        )}
+    const token = localStorage.getItem("token");
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+    if (!token || !usuario?.id) return;
+
+    try {
+      await fetch(API, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          novedad: novedad.trim(),
+          nota_publica: notaPublica.trim(),
+          nota_interna: notaInterna.trim(),
+          usuario_id: usuario.id,
+        }),
+      });
+
+      cargarPlantillas();
+    } catch (error) {
+      console.error("Error al agregar plantilla:", error);
+    }
+  };
+
+  const modificarPlantilla = async () => {
+    if (!notaSeleccionada) return;
+
+    const actual = plantillas[notaSeleccionada];
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    const nuevaPublica = prompt("Nuevo texto nota pública:", actual.notaPublica) || "";
+    const nuevaInterna = prompt("Nuevo texto nota interna:", actual.notaInterna) || "";
+
+    try {
+      await fetch(`${API}/${actual.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          nota_publica: nuevaPublica.trim(),
+          nota_interna: nuevaInterna.trim(),
+        }),
+      });
+
+      cargarPlantillas();
+      setTextoModificado(false);
+    } catch (error) {
+      console.error("Error modificando plantilla:", error);
+    }
+  };
+
+  const eliminarPlantilla = async () => {
+    if (!notaSeleccionada) return;
+
+    const id = plantillas[notaSeleccionada].id;
+    const token = localStorage.getItem("token");
+    if (!token) return;
+
+    if (!window.confirm(`¿Eliminar plantilla "${notaSeleccionada}"?`)) return;
+
+    try {
+      await fetch(`${API}/${id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      setNotaSeleccionada("");
+      setTextoNota("");
+      onSelect("");
+      cargarPlantillas();
+    } catch (error) {
+      console.error("Error al eliminar la plantilla:", error);
+    }
+  };
+
+return (
+  <div className="plantilla-container">
+    <div className="plantilla-card">
+      <h2 className="plantilla-title">Selecciona Nota</h2>
+
+      <select
+        value={notaSeleccionada}
+        onChange={handleNotaChange}
+        className="plantilla-select"
+      >
+        <option value="">-- Selecciona una nota --</option>
+        {Object.keys(plantillas).map((key) => (
+          <option key={key} value={key}>{key}</option>
+        ))}
+      </select>
+
+      <div className="plantilla-buttons">
+        <button className="plantilla-button" onClick={agregarPlantilla}>➕Agregar</button>
+        <button className="plantilla-button" onClick={modificarPlantilla}>✏️Modificar</button>
+        <button className="plantilla-button" onClick={eliminarPlantilla}>🗑️Eliminar</button>
       </div>
+
+      {notaSeleccionada && (
+        <>
+          <textarea
+            rows="5"
+            value={textoNota}
+            onChange={handleTextoChange}
+            className="plantilla-textarea"
+          />
+
+          <div className="plantilla-buttons">
+            <button
+              className={`plantilla-button publica ${tipoNota === "publica" ? "active" : ""}`}
+              onClick={() => handleTipoNotaChange("publica")}
+            >
+              Nota Pública
+            </button>
+            <button
+              className={`plantilla-button interna ${tipoNota === "interna" ? "active" : ""}`}
+              onClick={() => handleTipoNotaChange("interna")}
+            >
+              Nota Interna
+            </button>
+          </div>
+
+          <div className="plantilla-buttons">
+            <button className="plantilla-button copy" onClick={copiarTexto}>Copiar</button>
+            <button className="plantilla-button clear" onClick={limpiarTexto}>Limpiar</button>
+          </div>
+        </>
+      )}
     </div>
-  );
+  </div>
+);
+
 }
 
 export default PlantillaSelector;

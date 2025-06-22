@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as XLSX from "xlsx";
 
+import LoginRegistro from "./components/LoginRegistro";
 import NotasAvances from "./components/NotasAvances";
 import NotasConciliacion from "./components/NotasConciliacion";
 import PlantillaSelector from "./components/PlantillaSelector";
@@ -16,6 +17,16 @@ import Aplicativos from "./components/Aplicativos";
 import "./styles/main.css";
 
 function App() {
+  const [usuario, setUsuario] = useState(() => {
+    try {
+      const guardado = localStorage.getItem("usuario");
+      return guardado && guardado !== "undefined" ? JSON.parse(guardado) : null;
+    } catch (error) {
+      console.error("❌ Error al leer usuario desde localStorage:", error);
+      return null;
+    }
+  });
+
   const [tipoNota, setTipoNota] = useState("");
   const [torre, setTorre] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,36 +42,41 @@ function App() {
     notaInterna: "",
   });
 
-    useEffect(() => {
+  const cerrarSesion = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("usuario");
+    setUsuario(null);
+  };
+
+  useEffect(() => {
     const cargarNotasConfirmacion = async () => {
-        try {
+      try {
         const response = await fetch("/NOTAS_DESPACHO.xlsx");
         const blob = await response.blob();
         const reader = new FileReader();
 
         reader.onload = (e) => {
-            const data = new Uint8Array(e.target.result);
-            const workbook = XLSX.read(data, { type: "array" });
-            const sheet = workbook.Sheets[workbook.SheetNames[0]];
+          const data = new Uint8Array(e.target.result);
+          const workbook = XLSX.read(data, { type: "array" });
+          const sheet = workbook.Sheets[workbook.SheetNames[0]];
 
-            const notaPublica = sheet["E3"] ? sheet["E3"].v : "";
-            const notaInterna = sheet["E4"] ? sheet["E4"].v : "";
+          const notaPublica = sheet["E3"] ? sheet["E3"].v : "";
+          const notaInterna = sheet["E4"] ? sheet["E4"].v : "";
 
-            setNotasConfirmacion({
+          setNotasConfirmacion({
             notaPublica: notaPublica.toString().trim(),
             notaInterna: notaInterna.toString().trim(),
-            });
+          });
         };
 
         reader.readAsArrayBuffer(blob);
-        } catch (error) {
+      } catch (error) {
         console.error("Error al leer archivo Excel para notas confirmacion:", error);
-        }
+      }
     };
 
     cargarNotasConfirmacion();
-    }, []);
-
+  }, []);
 
   const handleMenuOpen = () => setMenuOpen(!menuOpen);
 
@@ -133,82 +149,83 @@ function App() {
 
   return (
     <div className="app-container">
-      {torre && (
-        <div className="torre-fija">
-          TU TORRE ES: <span style={{ color: "#6D9DEF" }}>{torre}</span>
-        </div>
-      )}
+      {!usuario ? (
+        <LoginRegistro onLogin={setUsuario} />
+      ) : (
+        <>
+          {torre && (
+            <div className="torre-fija">
+              TU TORRE ES: <span style={{background:"linear-gradient(to right, #3b82f6, #0e40af)" }}>{torre}</span>
+            </div>
+          )}
 
-      <Sidebar
-        onSelectTipoNota={handleSelectTipoNota}
-        isOpen={menuOpen}
-        onClose={handleMenuOpen}
-        onVistaEspecial={handleVistaEspecial}
-        torreSeleccionada={torre}
-        modoB2B={modoB2B}
-        onVolverInicio={handleVolverInicio}
-      />
+          <Sidebar
+            onSelectTipoNota={handleSelectTipoNota}
+            isOpen={menuOpen}
+            onClose={handleMenuOpen}
+            onVistaEspecial={handleVistaEspecial}
+            torreSeleccionada={torre}
+            modoB2B={modoB2B}
+            onVolverInicio={handleVolverInicio}
+            cerrarSesion={cerrarSesion}
+          />
 
-      <div className="main-container">
-        {pantallaBlanca ? (
-          <div
-            style={{
-              backgroundColor: "white",
-              height: "100vh",
-              width: "100vw",
-            }}
-          ></div>
-        ) : vista === "inicio" ? (
-          <h1 className="title">BIENVENIDO ASESOR</h1>
-        ) : modoB2B && !torre ? (
-          <TorreSelector onSelect={handleTorreSeleccionada} />
-        ) : vistaEspecial === "notasAvances" ? (
-          <NotasAvances torre={torre} />
-        ) : vistaEspecial === "notasConciliacion" ? (
-          <NotasConciliacion torre={torre} />
-        ) : vistaEspecial === "plantillasAdicionales" ? (
-          <PlantillasAdicionales torre={torre} />
-        ) : tipoNota === "confirmacionPublica" ? (
-          <NotaConfirmacion textoNota={notasConfirmacion.notaPublica} />
-        ) : tipoNota === "confirmacionInterna" ? (
-          <NotaConfirmacion textoNota={notasConfirmacion.notaInterna} />
-        ) : vistaEspecial === "envioInicio" ||
-          vistaEspecial === "envioCierre" ||
-          vistaEspecial === "envioApertura" ? (
-          <EnvioCorreos tipo={vistaEspecial} />
-        ) : vistaEspecial === "alarma" ? (
-          <Alarma />
-        ) : vistaEspecial === "aplicativos" ? (
-          <Aplicativos />
-        ) : vistaEspecial === "novedadesAsesor" ? (
-          <NovedadesAsesor />
-        ) : (
-          <>
-            {!modoB2B && !torre && tipoNota && (
+          <div className="main-container">
+            {pantallaBlanca ? (
+              <div style={{ backgroundColor: "white", height: "100vh", width: "100vw" }}></div>
+            ) : vista === "inicio" ? (
+              <h1 className="title">BIENVENID@, {usuario.nombre?.toUpperCase()}</h1>
+            ) : modoB2B && !torre ? (
               <TorreSelector onSelect={handleTorreSeleccionada} />
-            )}
+            ) : vistaEspecial === "notasAvances" ? (
+              <NotasAvances torre={torre} usuario={usuario} />
+            ) : vistaEspecial === "notasConciliacion" ? (
+              <NotasConciliacion torre={torre} />
+            ) : vistaEspecial === "plantillasAdicionales" ? (
+              <PlantillasAdicionales torre={torre} />
+            ) : tipoNota === "confirmacionPublica" ? (
+              <NotaConfirmacion textoNota={notasConfirmacion.notaPublica} />
+            ) : tipoNota === "confirmacionInterna" ? (
+              <NotaConfirmacion textoNota={notasConfirmacion.notaInterna} />
+            ) : vistaEspecial === "envioInicio" ||
+              vistaEspecial === "envioCierre" ||
+              vistaEspecial === "envioApertura" ? (
+              <EnvioCorreos tipo={vistaEspecial} />
+            ) : vistaEspecial === "alarma" ? (
+              <Alarma />
+            ) : vistaEspecial === "aplicativos" ? (
+              <Aplicativos />
+            ) : vistaEspecial === "novedadesAsesor" ? (
+              <NovedadesAsesor />
+            ) : (
+              <>
+                {!modoB2B && !torre && tipoNota && (
+                  <TorreSelector onSelect={handleTorreSeleccionada} />
+                )}
 
-            {torre &&
-              tipoNota &&
-              tipoNota !== "confirmacionPublica" &&
-              tipoNota !== "confirmacionInterna" && (
-                <>
-                  <PlantillaSelector
-                    torre={torre}
-                    tipoNotaExterna={tipoNota}
-                    onSelect={(p) => {
-                      setPlantilla(p);
-                      setMostrarDetalle(false);
-                    }}
-                  />
-                  {plantilla && mostrarDetalle && (
-                    <PlantillaDetalle plantilla={plantilla} />
+                {torre &&
+                  tipoNota &&
+                  tipoNota !== "confirmacionPublica" &&
+                  tipoNota !== "confirmacionInterna" && (
+                    <>
+                      <PlantillaSelector
+                        torre={torre}
+                        tipoNotaExterna={tipoNota}
+                        onSelect={(p) => {
+                          setPlantilla(p);
+                          setMostrarDetalle(false);
+                        }}
+                      />
+                      {plantilla && mostrarDetalle && (
+                        <PlantillaDetalle plantilla={plantilla} />
+                      )}
+                    </>
                   )}
-                </>
-              )}
-          </>
-        )}
-      </div>
+              </>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }

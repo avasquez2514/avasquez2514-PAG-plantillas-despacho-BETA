@@ -259,3 +259,27 @@
 }
 
 
+
+.logout-section {
+  position: absolute;
+  bottom: 80px; /* 👈 súbelo cambiando este valor (antes: 20px) */
+  left: 20px;
+  width: calc(100% - 40px);
+}
+
+
+.logout-button {
+  background-color: #112b54;
+  color: white;
+  border: 1px solid #3b82f6;
+  padding: 10px 12px;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 14px;
+}
+
+.logout-button:hover {
+  background-color: #2563eb; /* Azul más oscuro al hacer hover */
+  color: white;
+}

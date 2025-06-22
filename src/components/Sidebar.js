@@ -8,6 +8,7 @@ function Sidebar({
   onVistaEspecial,
   torreSeleccionada,
   onVolverInicio,
+  cerrarSesion,
 }) {
   const [isNotasDespachoOpen, setNotasDespachoOpen] = useState(false);
   const [hoverNotasSeguimiento, setHoverNotasSeguimiento] = useState(false);
@@ -41,17 +42,12 @@ function Sidebar({
 
             {isNotasDespachoOpen && torreSeleccionada && (
               <ul className="submenu">
-                {/* Alarma */}
                 <li className="submenu-item">
                   <button onClick={() => onVistaEspecial("alarma")}>Alarma</button>
                 </li>
-
-                {/* Aplicativos */}
                 <li className="submenu-item">
                   <button onClick={() => onVistaEspecial("aplicativos")}>Aplicativos</button>
                 </li>
-
-                {/* Envío de Correos */}
                 <li
                   onMouseEnter={() => setHoverEnvioCorreos(true)}
                   onMouseLeave={() => setHoverEnvioCorreos(false)}
@@ -78,8 +74,6 @@ function Sidebar({
                     </ul>
                   )}
                 </li>
-
-                {/* Notas de Campo con submenú lateral */}
                 <li
                   onMouseEnter={() => setHoverNotasSeguimiento(true)}
                   onMouseLeave={() => setHoverNotasSeguimiento(false)}
@@ -111,15 +105,22 @@ function Sidebar({
                     </ul>
                   )}
                 </li>
-                
-                {/* Novedades Asesor */}
                 <li className="submenu-item">
-                  <button onClick={() => onVistaEspecial("novedadesAsesor")}>Novedades Asesor</button>
+                  <button onClick={() => onVistaEspecial("novedadesAsesor")}>
+                    Novedades Asesor
+                  </button>
                 </li>
               </ul>
             )}
           </li>
         </ul>
+
+        {/* 🔒 Cerrar sesión fijo abajo */}
+        <div className="logout-section">
+          <button className="menu-title logout-button" onClick={cerrarSesion}>
+            🔒 Cerrar sesión
+          </button>
+        </div>
       </div>
 
       {isOpen && <div className="overlay" onClick={onClose}></div>}

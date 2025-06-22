@@ -35,7 +35,7 @@
 }
 
 .btn {
-  background-color: #2563eb;
+  background: linear-gradient(to right, #3b82f6, #0e40af);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -72,7 +72,7 @@
 }
 
 .btn-mini {
-  background-color: #374151;
+  background: linear-gradient(to right, #51545b, #26292e);
   color: white;
   border: none;
   padding: 0.4rem 1rem;
@@ -84,5 +84,5 @@
 }
 
 .btn-mini:hover {
-  background-color: #7c818a;
+  background-color: #656e7f;
 }

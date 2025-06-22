@@ -1,0 +1,120 @@
+/* Fondo general oscuro */
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #0f172a; /* Gris azulado muy oscuro */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Caja del formulario */
+.login-registro-container {
+  width: 100%;
+  max-width: 460px;
+  padding: 48px 40px;
+  background-color: #1e293b; /* Azul gris oscuro */
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  color: #f1f5f9;
+  text-align: left;
+}
+
+/* Título principal */
+/* Título centrado y más separado */
+.login-registro-container h2 {
+  font-size: 32px;
+  margin-bottom: 30px; /* 👈 más separación del formulario */
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center; /* 👈 centrado */
+}
+
+
+.login-registro-container .subtext {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 24px;
+}
+
+/* Inputs */
+.login-registro-container input {
+  padding: 14px 16px;
+  font-size: 15px;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  background-color: #1e293b;
+  color: #f8fafc;
+  outline: none;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.login-registro-container input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.login-registro-container input::placeholder {
+  color: #64748b;
+}
+
+/* Formulario */
+.login-registro-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Botón de enviar */
+.login-registro-container button[type="submit"] {
+  margin-top: 16px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(to right, #3b82f6, #0e40af);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-registro-container button[type="submit"]:hover {
+  background: linear-gradient(to right, #2563eb, #1d4ed8);
+}
+
+/* Botón alternativo */
+.login-registro-container .alt-button {
+  padding: 14px;
+  font-size: 15px;
+  background-color: #334155;
+  border-radius: 12px;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.login-registro-container .alt-button:hover {
+  background-color: #475569;
+}
+
+/* Enlace de abajo */
+.login-registro-container .link {
+  margin-top: 22px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.login-registro-container .link a {
+  color: #3b82f6;
+  text-decoration: none;
+}
+
+.login-registro-container .link a:hover {
+  text-decoration: underline;
+}

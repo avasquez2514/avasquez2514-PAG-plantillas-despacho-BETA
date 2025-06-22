@@ -55,7 +55,7 @@
 }
 
 .conciliacion-button {
-  background-color: #2563eb;
+  background: linear-gradient(to right, #3b82f6, #0e40af);
   color: white;
   padding: 0.5rem 1rem;
   font-weight: 600;

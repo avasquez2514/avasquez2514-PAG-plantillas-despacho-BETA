@@ -1,38 +1,45 @@
+/* CONTENEDOR PRINCIPAL DE APLICATIVOS */
 .aplicativos-container {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 10rem;
-  background-color: #f8f9fa;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 3rem 2.5rem;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
   text-align: center;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
 }
 
+/* TÍTULO */
 .aplicativos-title {
-  font-size: 1.8rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
   margin-bottom: 2rem;
-  color: #1f2937;
 }
 
+/* GRID RESPONSIVO DE BOTONES */
 .aplicativos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.5rem;
 }
 
+/* BOTONES DE APLICATIVO */
 .aplicativo-btn {
-  background-color: #2563eb;
+  background: linear-gradient(to right, #3b82f6, #0e40af);
   color: white;
   font-weight: 600;
   padding: 1rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.2s;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .aplicativo-btn:hover {
-  background-color: #1e40af;
-  transform: translateY(-2px);
+  background: linear-gradient(to right, #2563eb, #1d4ed8);
+  transform: translateY(-3px);
 }

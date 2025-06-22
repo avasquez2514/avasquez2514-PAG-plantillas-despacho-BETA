@@ -2,13 +2,11 @@
 .app-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  box-sizing: border-box;
-  overflow-x: hidden; /* Evita scroll horizontal */
-  padding: 3rem;
+  align-items: center; /* 👈 esto centra vertical */
+  min-height: 100vh;   /* 👈 asegura que ocupe todo el alto de la pantalla */
   background-color: #f3f4f6;
-  min-height: 87vh;
+  padding: 0;           /* 👈 quita espacio extra que empuja hacia abajo */
+  overflow: hidden;
 }
 
 /* Contenedor del contenido principal */
@@ -17,15 +15,32 @@
   max-width: 1000px;
   width: 100%;
   overflow-x: hidden;
+  background-color: #eaedf5;
 
 }
-
-/* Estilo del título */
+/* Estilo mejorado del título de bienvenida */
 .title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #1f2937; /* Gris oscuro */
+  font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+  font-size: 2.75rem;
+  font-weight: 600;
+  color: #1e293b; /* Gris azulado elegante */
+  letter-spacing: -0.5px;
+  text-align: center;
+  text-transform: uppercase;
   margin-bottom: 1.5rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Animación de entrada suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Botón de menú flotante */
@@ -35,7 +50,7 @@
   left: 0;
   transform: translateY(-50%);
   writing-mode: vertical-rl;
-  background: linear-gradient(to bottom, #3b82f6, #60a5fa);
+  background: linear-gradient(to right, #3b82f6, #2563eb);
   color: white;
   padding: 0.8rem;
   border-radius: 0 12px 12px 0;
@@ -45,7 +60,7 @@
 }
 
 .menu-button:hover {
-  background: linear-gradient(to bottom, #2563eb, #3b82f6);
+  background: linear-gradient(to right, #3b82f6, #0e40af);
   transform: translateY(-50%) scale(1.05);
 }
 
