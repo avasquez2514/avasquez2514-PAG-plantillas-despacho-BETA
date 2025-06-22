@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/envioCorreos.css";
 
 function EnvioCorreos({ tipo = "envioInicio" }) {
+<<<<<<< HEAD
   const [para, setPara] = useState("");
   const [cc, setCc] = useState("");
   const [asunto, setAsunto] = useState("");
@@ -9,6 +10,11 @@ function EnvioCorreos({ tipo = "envioInicio" }) {
   const [titulo, setTitulo] = useState("");
 
   // Establecer título según tipo
+=======
+  const [texto, setTexto] = useState("");
+  const [titulo, setTitulo] = useState("");
+
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   useEffect(() => {
     switch (tipo) {
       case "envioInicio":
@@ -25,6 +31,7 @@ function EnvioCorreos({ tipo = "envioInicio" }) {
     }
   }, [tipo]);
 
+<<<<<<< HEAD
   // Cargar contenido desde localStorage
   useEffect(() => {
     try {
@@ -59,11 +66,27 @@ function EnvioCorreos({ tipo = "envioInicio" }) {
     const data = { para, cc, asunto, mensaje };
     localStorage.setItem(`correos_${tipo}`, JSON.stringify(data));
     alert("Informacion guardada");
+=======
+  useEffect(() => {
+    const guardado = localStorage.getItem(`correos_${tipo}`);
+    if (guardado) setTexto(guardado);
+  }, [tipo]);
+
+  const copiarTexto = () => {
+    navigator.clipboard.writeText(texto);
+    alert("Texto copiado al portapapeles");
+  };
+
+  const guardarTexto = () => {
+    localStorage.setItem(`correos_${tipo}`, texto);
+    alert("Correos guardados");
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   };
 
   return (
     <div className="envio-container">
       <h2 className="envio-titulo">{titulo}</h2>
+<<<<<<< HEAD
 
       <label className="envio-label">Para:</label>
       <textarea
@@ -113,6 +136,20 @@ function EnvioCorreos({ tipo = "envioInicio" }) {
           Copiar Todo
         </button>
         <button className="btn" onClick={guardarTodo}>
+=======
+      <textarea
+        className="envio-textarea"
+        rows="10"
+        value={texto}
+        onChange={(e) => setTexto(e.target.value)}
+        placeholder="Ingresa los correos aquí separados por coma o espacio..."
+      />
+      <div className="envio-botones">
+        <button className="btn" onClick={copiarTexto}>
+          Copiar
+        </button>
+        <button className="btn" onClick={guardarTexto}>
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
           Guardar
         </button>
       </div>

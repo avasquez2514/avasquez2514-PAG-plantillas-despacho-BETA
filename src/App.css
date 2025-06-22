@@ -49,6 +49,7 @@
   z-index: 9999;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
+<<<<<<< HEAD
 
 html, body {
   margin: 0;
@@ -56,3 +57,5 @@ html, body {
   height: 100%;
   overflow: hidden; /* 👈 evita el scroll */
 }
+=======
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088

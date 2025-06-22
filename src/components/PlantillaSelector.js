@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+<<<<<<< HEAD
+=======
+import * as XLSX from "xlsx";
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
 import "../styles/plantillas.css";
 
 function PlantillaSelector({ torre, onSelect }) {
@@ -8,6 +12,7 @@ function PlantillaSelector({ torre, onSelect }) {
   const [textoNota, setTextoNota] = useState("");
   const [textoModificado, setTextoModificado] = useState(false);
 
+<<<<<<< HEAD
   const API = "http://localhost:4000/api/notas";
 
   const cargarPlantillas = async () => {
@@ -47,18 +52,71 @@ function PlantillaSelector({ torre, onSelect }) {
 
   useEffect(() => {
     cargarPlantillas();
+=======
+  useEffect(() => {
+    const cargarExcel = async () => {
+      try {
+        const response = await fetch("/NOTAS_DESPACHO.xlsx");
+        const blob = await response.blob();
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+          const data = new Uint8Array(e.target.result);
+          const workbook = XLSX.read(data, { type: "array" });
+          const sheet = workbook.Sheets[workbook.SheetNames[0]];
+          const jsonData = XLSX.utils.sheet_to_json(sheet);
+
+          const notaPublica = sheet["E4"] ? sheet["E4"].v.toString().trim() : ""; // ← CAMBIO AQUÍ
+          const notaInterna = sheet["E3"] ? sheet["E3"].v.toString().trim() : ""; // ← CAMBIO AQUÍ
+
+          const plantillasObj = {
+            "CONFIRMACION VISITA": {
+              notaPublica,
+              notaInterna,
+            },
+          };
+
+          jsonData.forEach((row) => {
+            const novedad = row["Novedad"]?.toString().trim() || "Sin título";
+            plantillasObj[novedad] = {
+              notaPublica: row["Nota_Publica"]?.toString().trim() || "",
+              notaInterna: row["Nota_Interna"]?.toString().trim() || "",
+            };
+          });
+
+          setPlantillas(plantillasObj);
+        };
+
+        reader.readAsArrayBuffer(blob);
+      } catch (error) {
+        console.error("Error al leer el archivo Excel:", error);
+      }
+    };
+
+    cargarExcel();
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   }, []);
 
   useEffect(() => {
     if (notaSeleccionada && plantillas[notaSeleccionada] && !textoModificado) {
+<<<<<<< HEAD
       const encabezado = `Gestión-MOC-Torre ${torre}:`;
+=======
+      const encabezado = `Gestión-MOC-Torre ${torre}:\n`;
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
       const nota =
         tipoNota === "publica"
           ? plantillas[notaSeleccionada].notaPublica
           : plantillas[notaSeleccionada].notaInterna;
 
       const textoCompleto =
+<<<<<<< HEAD
         tipoNota === "publica" ? nota : `${encabezado}\n\n${nota}`;
+=======
+        tipoNota === "publica" || notaSeleccionada === "Nota de Confirmación"
+          ? nota
+          : `${encabezado}\n\n${nota}`;
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
 
       setTextoNota(textoCompleto);
       onSelect(textoCompleto);
@@ -88,6 +146,7 @@ function PlantillaSelector({ torre, onSelect }) {
     onSelect("");
   };
 
+<<<<<<< HEAD
   const agregarPlantilla = async () => {
     const novedad = prompt("Nombre de la nueva plantilla:");
     if (!novedad) return;
@@ -231,6 +290,61 @@ return (
   </div>
 );
 
+=======
+  return (
+    <div className="plantilla-container">
+      <div className="plantilla-card">
+        <h2 className="plantilla-title">Selecciona Nota</h2>
+
+        <select
+          value={notaSeleccionada}
+          onChange={handleNotaChange}
+          className="plantilla-select"
+        >
+          <option value="">-- Selecciona una nota --</option>
+          {Object.keys(plantillas).map((key) => (
+            <option key={key} value={key}>
+              {key}
+            </option>
+          ))}
+        </select>
+
+        {notaSeleccionada && (
+          <>
+            <textarea
+              className="plantilla-textarea"
+              rows="5"
+              value={textoNota}
+              onChange={handleTextoChange}
+            />
+            <div className="plantilla-buttons">
+              <button
+                onClick={() => handleTipoNotaChange("publica")}
+                className={`plantilla-button publica ${tipoNota === "publica" ? "active" : ""}`}
+              >
+                Nota Pública
+              </button>
+              <button
+                onClick={() => handleTipoNotaChange("interna")}
+                className={`plantilla-button interna ${tipoNota === "interna" ? "active" : ""}`}
+              >
+                Nota Interna
+              </button>
+            </div>
+            <div className="plantilla-buttons">
+              <button onClick={copiarTexto} className="plantilla-button copy">
+                Copiar
+              </button>
+              <button onClick={limpiarTexto} className="plantilla-button clear">
+                Limpiar
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
 }
 
 export default PlantillaSelector;

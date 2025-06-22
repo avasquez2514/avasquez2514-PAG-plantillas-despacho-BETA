@@ -1,12 +1,23 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
 /* Contenedor principal de la aplicación */
 .app-container {
   display: flex;
   justify-content: center;
+<<<<<<< HEAD
   align-items: center; /* 👈 esto centra vertical */
   min-height: 100vh;   /* 👈 asegura que ocupe todo el alto de la pantalla */
   background-color: #f3f4f6;
   padding: 0;           /* 👈 quita espacio extra que empuja hacia abajo */
   overflow: hidden;
+=======
+  align-items: center;
+  background-color: #e9edf5; /* Gris más cálido */
+  min-height: 100vh;
+  box-sizing: border-box;
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
 }
 
 /* Contenedor del contenido principal */
@@ -15,6 +26,7 @@
   max-width: 1000px;
   width: 100%;
   overflow-x: hidden;
+<<<<<<< HEAD
   background-color: #eaedf5;
 
 }
@@ -41,6 +53,17 @@
     opacity: 1;
     transform: translateY(0);
   }
+=======
+  
+}
+
+/* Estilo del título */
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1f2937; /* Gris oscuro */
+  margin-bottom: 1.5rem;
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
 }
 
 /* Botón de menú flotante */
@@ -50,7 +73,11 @@
   left: 0;
   transform: translateY(-50%);
   writing-mode: vertical-rl;
+<<<<<<< HEAD
   background: linear-gradient(to right, #3b82f6, #2563eb);
+=======
+  background: linear-gradient(to bottom, #3b82f6, #60a5fa);
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   color: white;
   padding: 0.8rem;
   border-radius: 0 12px 12px 0;
@@ -60,7 +87,11 @@
 }
 
 .menu-button:hover {
+<<<<<<< HEAD
   background: linear-gradient(to right, #3b82f6, #0e40af);
+=======
+  background: linear-gradient(to bottom, #2563eb, #3b82f6);
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   transform: translateY(-50%) scale(1.05);
 }
 
@@ -73,7 +104,10 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
+<<<<<<< HEAD
   min-height: 80vh; /* Asegura buen scroll */
+=======
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
 }
 
 /* TORRE FIJA */
@@ -90,24 +124,57 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
+<<<<<<< HEAD
 /* ============================= */
 /* RESPONSIVE DESIGN MEJORADO 📱 */
 /* ============================= */
 
+=======
+/* RESPONSIVE DESIGN ORIGINAL */
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
 @media (max-width: 768px) {
   .title {
     font-size: 2rem;
   }
 
   .menu-button {
+<<<<<<< HEAD
     font-size: 18px;
     padding: 10px;
+=======
+    font-size: 16px;
+    padding: 6px 10px;
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   }
 
   .main-container {
     padding: 1rem;
   }
+<<<<<<< HEAD
 
+=======
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .main-content {
+    padding: 0.5rem;
+  }
+
+  .main-container {
+    gap: 1rem;
+  }
+}
+
+/* ============================= */
+/* NUEVAS MEJORAS RESPONSIVE 📱 */
+/* ============================= */
+
+@media (max-width: 768px) {
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   .app-container {
     flex-direction: column;
     padding: 1rem 0.5rem;
@@ -126,6 +193,7 @@
 }
 
 @media (max-width: 480px) {
+<<<<<<< HEAD
   .title {
     font-size: 1.5rem;
   }
@@ -135,11 +203,36 @@
     text-align: center;
   }
 
+=======
+  .app-container {
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  .main-content {
+    padding: 0.25rem;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 1.3rem;
+    line-height: 1.5;
+  }
+
+  .menu-button {
+    font-size: 14px;
+    padding: 6px;
+    writing-mode: vertical-rl;
+    top: 5%;
+  }
+
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   .main-container {
     gap: 1rem;
     padding: 0.5rem;
   }
 
+<<<<<<< HEAD
   .menu-button {
     font-size: 16px;
     padding: 6px;
@@ -147,6 +240,8 @@
     top: 8%;
   }
 
+=======
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   .torre-fija {
     font-size: 0.9rem;
     padding: 6px 10px;
@@ -155,6 +250,7 @@
   }
 }
 
+<<<<<<< HEAD
 @media (max-width: 360px) {
   .title {
     font-size: 1.3rem;
@@ -184,3 +280,5 @@ button {
   max-width: 100%;
   box-sizing: border-box;
 }
+=======
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088

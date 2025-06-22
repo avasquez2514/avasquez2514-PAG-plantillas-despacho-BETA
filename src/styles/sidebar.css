@@ -176,7 +176,10 @@
   position: relative;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
 /* ======================== */
 /* 📱 Responsive: Dispositivos pequeños */
 /* ======================== */
@@ -259,6 +262,7 @@
 }
 
 
+<<<<<<< HEAD
 
 .logout-section {
   position: absolute;
@@ -283,3 +287,5 @@
   background-color: #2563eb; /* Azul más oscuro al hacer hover */
   color: white;
 }
+=======
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088

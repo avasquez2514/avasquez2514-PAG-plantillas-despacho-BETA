@@ -1,7 +1,11 @@
 .notas-avances-container {
   max-width: 900px;
   margin: 30px auto;
+<<<<<<< HEAD
   padding: 100px;
+=======
+  padding: 30px;
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   background: #f5f7fa;
   border-radius: 16px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
@@ -51,6 +55,10 @@
   transform: scale(1.05);
 }
 
+<<<<<<< HEAD
+=======
+/* Textarea fija con diseño moderno */
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
 .caja-texto-fija {
   background: #f1f5f9;
   padding: 24px;
@@ -86,6 +94,10 @@
   font-size: 1.1rem;
 }
 
+<<<<<<< HEAD
+=======
+/* Botones de acción */
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
 .botones-accion {
   margin-top: 20px;
   display: flex;
@@ -124,6 +136,7 @@
 .boton-accion.limpiar:hover {
   background-color: #dc2626;
 }
+<<<<<<< HEAD
 
 /* NUEVO ESTILO PARA LAS NOTAS CON BOTONES DE MODIFICAR/ELIMINAR/COPIAR */
 .notas-list {
@@ -192,3 +205,5 @@ background: #dbeafe;
   background: #059669;
   transform: translateY(-2px);
 }
+=======
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088

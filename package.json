@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
 {
   "name": "pag-plantillas-despacho",
   "version": "0.1.0",
   "private": true,
+<<<<<<< HEAD
   "homepage": "https://avasquez2514-pag-plantillas-despacho-beta.onrender.com",
   "engines": {
     "node": "18.x"
@@ -13,6 +17,12 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^7.1.1",
     "@mui/material": "^7.1.1",
+=======
+  "engines": {
+    "node": "18.x"
+  },
+  "dependencies": {
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.2.0",

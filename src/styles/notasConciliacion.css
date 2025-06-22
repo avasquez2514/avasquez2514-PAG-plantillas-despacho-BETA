@@ -1,5 +1,9 @@
 .notas-conciliacion-container {
+<<<<<<< HEAD
   display: contents;
+=======
+  display: flex;
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   justify-content: center;
   align-items: center;
   min-height: 100vh;
@@ -32,7 +36,11 @@
 }
 
 .conciliacion-item {
+<<<<<<< HEAD
   background-color: #e0e5e9;
+=======
+  background-color: #f1f5f9;
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   border-radius: 12px;
   padding: 1.2rem;
   display: flex;
@@ -55,7 +63,11 @@
 }
 
 .conciliacion-button {
+<<<<<<< HEAD
   background: linear-gradient(to right, #3b82f6, #0e40af);
+=======
+  background-color: #2563eb;
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   color: white;
   padding: 0.5rem 1rem;
   font-weight: 600;
@@ -70,6 +82,7 @@
   background-color: #1d4ed8;
   transform: scale(1.05);
 }
+<<<<<<< HEAD
 
 /* Agrupar las listas en tres columnas ordenadas visualmente */
 .bloques-conciliacion-grid {
@@ -107,3 +120,5 @@
     grid-template-columns: 1fr;
   }
 }
+=======
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088

@@ -6,6 +6,7 @@
   padding: 2rem;
   background-color: #f3f4f6;
   min-height: 100vh;
+<<<<<<< HEAD
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -17,12 +18,28 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   width: 100%;
   max-width: 900px;
+=======
+}
+
+/* === TARJETA PRINCIPAL MÁS ANCHA === */
+.plantilla-card {
+  background-color: white;
+  border-radius: 1.25rem;
+  padding: 15rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 900px; /* <-- más ancho */
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   text-align: center;
 }
 
 /* === TÍTULO === */
 .plantilla-title {
+<<<<<<< HEAD
   font-size: 2.2rem;
+=======
+  font-size: 2rem;
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   font-weight: 700;
   margin-bottom: 2rem;
   color: #111827;
@@ -57,7 +74,11 @@
 
 .caja-texto-plantilla textarea {
   width: 100%;
+<<<<<<< HEAD
   resize: vertical;
+=======
+  resize: none;
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   border: 1px solid #d1d5db;
   border-radius: 0.75rem;
   padding: 1.25rem;
@@ -65,7 +86,11 @@
   font-size: 1rem;
   background-color: #f9fafb;
   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.05);
+<<<<<<< HEAD
   min-height: 250px;
+=======
+  height: 250px; /* más alto también */
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
 }
 
 /* === BOTÓN COPIAR === */
@@ -87,6 +112,7 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
+<<<<<<< HEAD
 
 /* === BOTÓN AGREGAR === */
 .agregar-button {
@@ -127,3 +153,5 @@
   white-space: pre-wrap;
 }
 
+=======
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088

@@ -1,7 +1,11 @@
 .envio-container {
   max-width: 600px;
   margin: 3rem auto;
+<<<<<<< HEAD
   padding: 10rem;
+=======
+  padding: 2rem;
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   background-color: #f8fafc;
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
@@ -35,7 +39,11 @@
 }
 
 .btn {
+<<<<<<< HEAD
   background: linear-gradient(to right, #3b82f6, #0e40af);
+=======
+  background-color: #2563eb;
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -50,6 +58,7 @@
   background-color: #1e3a8a;
   transform: translateY(-2px);
 }
+<<<<<<< HEAD
 
 .envio-label {
   font-weight: 600;
@@ -86,3 +95,5 @@
 .btn-mini:hover {
   background-color: #656e7f;
 }
+=======
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088

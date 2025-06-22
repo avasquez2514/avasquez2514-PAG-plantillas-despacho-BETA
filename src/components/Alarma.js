@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
 import "../styles/alarma.css";
 
 function Alarma() {
@@ -29,10 +30,31 @@ function Alarma() {
       alarmas.forEach((alarma, index) => {
         if (alarma.hora === horaActual && !activadas.includes(index)) {
           mostrarPantallaAlarma(alarma);
+=======
+import "../styles/alarma.css"; // Estilos separados
+
+function Alarma() {
+  const [nuevaHora, setNuevaHora] = useState("");
+  const [alarmas, setAlarmas] = useState([]);
+  const [activadas, setActivadas] = useState([]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const ahora = new Date();
+      const horaActual = `${ahora.getHours().toString().padStart(2, "0")}:${ahora
+        .getMinutes()
+        .toString()
+        .padStart(2, "0")}`;
+
+      alarmas.forEach((alarma, index) => {
+        if (alarma.hora === horaActual && !activadas.includes(index)) {
+          alert(`⏰ ¡Alarma activada! (${alarma.hora})`);
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
           setActivadas((prev) => [...prev, index]);
         }
       });
     }, 1000);
+<<<<<<< HEAD
 
     return () => clearInterval(intervalo);
   }, [alarmas, activadas]);
@@ -58,6 +80,16 @@ function Alarma() {
     setAlarmas((prev) => [...prev, nueva]);
     setNuevaHora("");
     setNombreAlarma("");
+=======
+    return () => clearInterval(interval);
+  }, [alarmas, activadas]);
+
+  const agregarAlarma = () => {
+    if (nuevaHora && !alarmas.find((a) => a.hora === nuevaHora)) {
+      setAlarmas((prev) => [...prev, { hora: nuevaHora }]);
+      setNuevaHora("");
+    }
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
   };
 
   const eliminarAlarma = (index) => {
@@ -76,6 +108,7 @@ function Alarma() {
           onChange={(e) => setNuevaHora(e.target.value)}
           className="alarma-input"
         />
+<<<<<<< HEAD
         <input
           type="text"
           placeholder="Nombre de la alarma"
@@ -83,6 +116,8 @@ function Alarma() {
           onChange={(e) => setNombreAlarma(e.target.value)}
           className="alarma-input"
         />
+=======
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
         <button onClick={agregarAlarma} className="alarma-agregar">
           Agregar Alarma
         </button>
@@ -94,9 +129,13 @@ function Alarma() {
         <ul className="alarma-lista">
           {alarmas.map((alarma, index) => (
             <li key={index} className="alarma-item">
+<<<<<<< HEAD
               <span className="alarma-hora">
                 🕒 {alarma.hora} {alarma.nombre && `- ${alarma.nombre}`}
               </span>
+=======
+              <span className="alarma-hora">{alarma.hora}</span>
+>>>>>>> cc840baba70a7dfc69cd1966a9e03346c5876088
               <button
                 onClick={() => eliminarAlarma(index)}
                 className="alarma-eliminar"
